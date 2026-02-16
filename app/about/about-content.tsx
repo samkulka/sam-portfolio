@@ -34,12 +34,6 @@ export function AboutContent() {
                 platforms, and real-world operational tools from architecture to
                 interface.
               </p>
-              <p>
-                Most recently, I was a Data Engineer at Charles Schwab, where I led
-                the design and delivery of production data products for regulatory
-                and business stakeholders, engineered data architectures supporting
-                200+ analysts, and drove a data warehouse migration that saved $180M.
-              </p>
             </div>
           </FadeIn>
         </div>
@@ -47,6 +41,17 @@ export function AboutContent() {
 
       <FadeIn delay={0.15}>
         <div className="mt-8 space-y-5 text-[0.9375rem] leading-relaxed text-muted dark:text-dark-muted">
+          <p>
+            As Co-Founder, Managing Member, and Lead Engineer at Force Majeure, I led the design and development of a full-stack ticketing and event platform focused on artist-first workflows and operational flexibility. My role combined product strategy, system architecture, and hands-on engineering, translating real-world event logistics into scalable software systems.
+            I architected core platform features including event lifecycle management, transactional ticket purchasing flows, and administrative tooling for non-technical organizers. The platform was built with an emphasis on reliability, usability, and extensibility, supporting real operational constraints such as high-traffic ticket drops, payment state management, and evolving product requirements.
+            Beyond engineering execution, I guided product direction, user experience decisions, and technical tradeoffs to ensure alignment between business goals and platform capabilities.
+          </p>
+          <p>
+            Most recently, I was a Data Engineer at Charles Schwab, where I led
+            the design and delivery of production data products for regulatory
+            and business stakeholders, engineered data architectures supporting
+            200+ analysts, and drove a data warehouse migration that saved $180M.
+          </p>
           <p>
             Outside of enterprise work, I build full-stack products end to end. Lex
             is an AI knowledge platform that converts unstructured documents into
