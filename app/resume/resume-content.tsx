@@ -56,6 +56,17 @@ const projects = [
       "Developed a Next.js + FastAPI production system with authentication, job history, and audit trails for traceable, enterprise-grade AI workflows",
     ],
   },
+  {
+    title: "Flite Signs",
+    description: "Operational Software for Signage Manufacturing",
+    period: "2024",
+    points: [
+      "Built full-stack operational software replacing spreadsheets and email threads with a structured project pipeline for an architectural signage company",
+      "Designed a quoting engine with configurable material and labor rates, line-item breakdowns, and version-tracked client approvals",
+      "Implemented a multi-stage order pipeline with role-based access controls, stage transition tracking, and real-time team dashboards",
+      "Used FFmpeg to build a video compression pipeline for the landing page hero — transcoding to H.264, tuning CRF for quality-to-size balance, and generating multi-resolution variants",
+    ],
+  },
 ]
 
 const education = [

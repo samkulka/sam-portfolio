@@ -10,6 +10,7 @@ stack:
   - PostgreSQL
   - Prisma
   - Tailwind CSS
+  - FFmpeg
 links:
   - label: "Live Site"
     href: "https://flite-signs.vercel.app/"
@@ -88,6 +89,8 @@ The application is a standard full-stack TypeScript setup: React frontend with T
 **Data model.** The core entities are `clients`, `projects`, `quotes`, `orders`, `pipeline_stages`, and `assets`. Orders have a polymorphic relationship with pipeline stages through a `stage_transitions` table that records when an order moved between stages, who moved it, and any notes.
 
 **Permissions.** Role-based access controls ensure that shop floor staff can update fabrication status but cannot modify quotes, while sales staff can create quotes but cannot advance orders past the design stage without design team approval.
+
+**Video compression.** The landing page features a hero video showcasing completed signage projects. To keep page load performance acceptable, the raw footage was processed through an FFmpeg pipeline — transcoding to H.264, tuning CRF for quality-to-size balance, and generating multiple resolution variants for responsive delivery.
 
 **Reporting.** Management reports are generated from the stage transition data: average time per stage, bottleneck identification, revenue by project type, and client lifetime value. These replace the manual reports that previously took hours to compile from spreadsheets.
 
