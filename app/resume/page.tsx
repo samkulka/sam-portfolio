@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 }
 
 function hasPdf() {
-  return fs.existsSync(path.join(process.cwd(), "public/SamKulka_DataEngineer_Res.pdf"))
+  return fs.existsSync(path.join(process.cwd(), "public/SamKulka_FullStackEngineer_Res.pdf"))
 }
 
 export default function ResumePage() {

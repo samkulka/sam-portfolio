@@ -20,9 +20,18 @@ export function Footer() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-muted transition-colors hover:text-foreground dark:text-dark-muted dark:hover:text-dark-foreground"
+                className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-foreground dark:text-dark-muted dark:hover:text-dark-foreground"
               >
                 {label}
+                <svg
+                  className="h-3 w-3"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
+                </svg>
               </a>
             ))}
           </div>

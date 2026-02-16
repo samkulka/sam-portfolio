@@ -111,7 +111,7 @@ export function ResumeContent({ pdfAvailable }: { pdfAvailable: boolean }) {
             </p>
           </div>
           {pdfAvailable && (
-            <Button href="/SamKulka_DataEngineer_Res.pdf" variant="secondary" size="sm" external>
+            <Button href="/SamKulka_FullStackEngineer_Res.pdf" variant="secondary" size="sm" external>
               Download PDF
             </Button>
           )}

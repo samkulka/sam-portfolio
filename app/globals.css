@@ -36,6 +36,13 @@ html {
   html {
     scroll-behavior: auto;
   }
+
+  .bg-ribbons::before,
+  .bg-ribbons::after,
+  .bg-ribbon-accent,
+  .card-shimmer::before {
+    animation: none !important;
+  }
 }
 
 body {

@@ -21,15 +21,15 @@ export function Button({
   onClick,
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center rounded-md font-medium transition-colors"
+    "inline-flex items-center justify-center rounded-md font-medium transition-all duration-200"
 
   const variants = {
     primary:
-      "bg-accent text-accent-foreground hover:bg-accent/90 dark:bg-dark-accent dark:text-dark-accent-foreground dark:hover:bg-dark-accent/90",
+      "bg-accent text-accent-foreground hover:bg-accent/90 hover:shadow-md hover:scale-[1.02] active:scale-[0.98] dark:bg-dark-accent dark:text-dark-accent-foreground dark:hover:bg-dark-accent/90",
     secondary:
-      "border border-border text-foreground hover:bg-surface-hover dark:border-dark-border dark:text-dark-foreground dark:hover:bg-dark-surface-hover",
+      "border border-border text-foreground hover:bg-surface-hover hover:shadow-sm hover:scale-[1.02] active:scale-[0.98] dark:border-dark-border dark:text-dark-foreground dark:hover:bg-dark-surface-hover",
     ghost:
-      "text-muted hover:text-foreground dark:text-dark-muted dark:hover:text-dark-foreground",
+      "text-muted hover:text-foreground hover:bg-surface-hover/50 active:scale-[0.98] dark:text-dark-muted dark:hover:text-dark-foreground dark:hover:bg-dark-surface-hover/50",
   }
 
   const sizes = {
