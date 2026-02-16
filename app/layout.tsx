@@ -43,6 +43,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
         <ThemeProvider>
+          <div className="bg-ribbons" aria-hidden="true" />
           <a href="#main-content" className="skip-link">
             Skip to main content
           </a>

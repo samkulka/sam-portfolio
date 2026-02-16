@@ -17,19 +17,20 @@ interface ProjectCardProps {
 export function ProjectCard({ title, description, href, role, stack, className }: ProjectCardProps) {
   return (
     <motion.div
+      className="card-shimmer"
       whileHover={{ y: -2 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
     >
       <NextLink
         href={href}
         className={cn(
-          "group block rounded-lg border border-border bg-surface p-6 transition-colors hover:border-foreground/20 dark:border-dark-border dark:bg-dark-surface dark:hover:border-dark-foreground/20",
+          "group block rounded-lg border border-border bg-surface p-6 transition-colors dark:border-dark-border dark:bg-dark-surface",
           className
         )}
       >
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0 flex-1">
-            <h3 className="text-lg font-semibold text-foreground group-hover:text-foreground dark:text-dark-foreground">
+            <h3 className="text-lg font-semibold text-foreground dark:text-dark-foreground">
               {title}
             </h3>
             <p className="mt-1 text-sm text-muted dark:text-dark-muted">{role}</p>

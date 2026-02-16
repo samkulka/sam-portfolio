@@ -167,3 +167,130 @@ body {
   background-color: var(--color-dark-surface-hover);
   border-color: var(--color-dark-border);
 }
+
+/* Ambient ribbon background */
+.bg-ribbons {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-ribbons::before,
+.bg-ribbons::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.dark .bg-ribbons::before,
+.dark .bg-ribbons::after {
+  opacity: 1;
+}
+
+/* Warm ribbon — top right, drifts slowly */
+.bg-ribbons::before {
+  width: 140%;
+  height: 220px;
+  top: 6%;
+  left: -20%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 200, 150, 0.12) 25%,
+    rgba(255, 170, 120, 0.18) 50%,
+    rgba(255, 200, 150, 0.12) 75%,
+    transparent 100%
+  );
+  transform: rotate(-10deg);
+  animation: ribbon-drift-1 25s ease-in-out infinite alternate;
+}
+
+/* Cool ribbon — lower left, counter-drifts */
+.bg-ribbons::after {
+  width: 130%;
+  height: 180px;
+  bottom: 12%;
+  left: -15%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(160, 180, 255, 0.09) 25%,
+    rgba(140, 160, 255, 0.14) 50%,
+    rgba(160, 180, 255, 0.09) 75%,
+    transparent 100%
+  );
+  transform: rotate(6deg);
+  animation: ribbon-drift-2 30s ease-in-out infinite alternate;
+}
+
+@keyframes ribbon-drift-1 {
+  from {
+    transform: rotate(-10deg) translateX(-4%);
+  }
+  to {
+    transform: rotate(-6deg) translateX(4%);
+  }
+}
+
+@keyframes ribbon-drift-2 {
+  from {
+    transform: rotate(6deg) translateX(3%);
+  }
+  to {
+    transform: rotate(10deg) translateX(-3%);
+  }
+}
+
+/* Gradient shimmer border for project cards */
+@property --shimmer-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.card-shimmer {
+  position: relative;
+}
+
+.card-shimmer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 0.5rem;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--shimmer-angle),
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 8%,
+    rgba(255, 255, 255, 0.08) 16%,
+    transparent 24%,
+    transparent 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card-shimmer:hover::before {
+  opacity: 1;
+  animation: shimmer-spin 3s linear infinite;
+}
+
+@keyframes shimmer-spin {
+  from {
+    --shimmer-angle: 0deg;
+  }
+  to {
+    --shimmer-angle: 360deg;
+  }
+}
