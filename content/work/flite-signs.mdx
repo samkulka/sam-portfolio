@@ -1,0 +1,104 @@
+---
+title: "Flite Signs"
+description: "Operational tooling that translates manual signage workflows into software: client intake, quoting, order tracking, and internal status pipeline."
+date: "2023-01"
+role: "Product Engineer"
+stack:
+  - TypeScript
+  - React
+  - Node.js
+  - PostgreSQL
+  - Prisma
+  - Tailwind CSS
+links:
+  - label: "Live Site"
+    href: "https://flite-signs.vercel.app/"
+order: 2
+---
+
+Flite Signs is an architectural signage company that designs and fabricates custom signage for commercial buildings, retail spaces, and public institutions. Before this project, their entire operation ran on spreadsheets, email threads, and paper folders passed between desks.
+
+The goal was to build internal operational software that could model their actual business process and scale with the team, not force them into a generic project management tool that does not understand signage workflows.
+
+## The problem
+
+Architectural signage projects are surprisingly complex. A single building sign might involve:
+
+- Initial client consultation and site survey
+- Design iterations with architectural review
+- Material specification and vendor sourcing
+- Municipal permitting and code compliance
+- Fabrication scheduling across multiple shop stations
+- Installation coordination with general contractors
+
+The company tracked all of this in a combination of Excel files, a shared Google Drive, and institutional knowledge held by a few senior employees. New hires took months to become productive because the process was undocumented and the status of any given project was scattered across multiple systems.
+
+Key problems to solve:
+
+- No single source of truth for project status
+- Quoting was slow and error-prone (manual material calculations)
+- Client communication was ad-hoc (no standard intake or approval flow)
+- Shop floor had no visibility into upcoming work or priorities
+- Invoicing was disconnected from project milestones
+
+## Solution
+
+### Client intake and quoting
+
+The system starts with a structured intake form that captures project requirements: sign type (channel letters, monument signs, wayfinding, ADA-compliant), dimensions, materials, lighting requirements, installation context, and site photos.
+
+From the intake data, the quoting engine generates estimates based on configurable material and labor rates. Quotes include line items for design, fabrication, permitting, and installation, each with adjustable quantities and unit costs. The system tracks quote versions so the team can see the history of changes and client approvals.
+
+### Order tracking and status pipeline
+
+Once a quote is approved, it becomes an active order. Orders move through a defined pipeline that mirrors the company's actual production process:
+
+1. **Design** - CAD drawings and renderings for client approval
+2. **Permitting** - Municipal submissions and review tracking
+3. **Material procurement** - Vendor orders and delivery tracking
+4. **Fabrication** - Shop scheduling with station assignments
+5. **Quality check** - Pre-installation inspection
+6. **Installation** - Scheduling with site coordination notes
+7. **Closeout** - Final photos, client sign-off, invoicing
+
+Each stage has required fields and checklists that must be completed before an order can advance. This prevents the common failure mode of work moving forward without necessary approvals or documentation.
+
+### Asset and spec collection
+
+Signage projects generate a lot of assets: site photos, architectural drawings, design mockups, material samples, permit documents, and installation photos. The system provides structured file management tied to each project phase, so the team does not need to dig through a shared drive to find the latest approved design file.
+
+Specifications (dimensions, materials, colors, fonts, lighting type) are stored as structured data rather than embedded in documents. This makes them searchable and reportable, and allows the quoting engine to pull specs directly when generating estimates.
+
+### Internal status and visibility
+
+A dashboard gives the entire team real-time visibility into the pipeline:
+
+- **Sales** sees incoming inquiries and quote status
+- **Design** sees approved orders waiting for CAD work
+- **Shop floor** sees a prioritized fabrication queue with material availability
+- **Installation** sees upcoming installs with site details and coordination notes
+- **Management** sees revenue projections, pipeline health, and bottleneck indicators
+
+Notifications alert team members when work arrives at their stage or when blockers are flagged. The goal was to eliminate the daily "where are we on this?" conversations that consumed significant management time.
+
+## Technical approach
+
+The application is a standard full-stack TypeScript setup: React frontend with Tailwind CSS, Node.js API, PostgreSQL database with Prisma as the ORM.
+
+**Data model.** The core entities are `clients`, `projects`, `quotes`, `orders`, `pipeline_stages`, and `assets`. Orders have a polymorphic relationship with pipeline stages through a `stage_transitions` table that records when an order moved between stages, who moved it, and any notes.
+
+**Permissions.** Role-based access controls ensure that shop floor staff can update fabrication status but cannot modify quotes, while sales staff can create quotes but cannot advance orders past the design stage without design team approval.
+
+**Reporting.** Management reports are generated from the stage transition data: average time per stage, bottleneck identification, revenue by project type, and client lifetime value. These replace the manual reports that previously took hours to compile from spreadsheets.
+
+## Process over technology
+
+The most valuable part of this project was not the code. It was the process of sitting with each team (sales, design, fabrication, installation) and documenting how they actually work versus how they think they work. Several workflow assumptions turned out to be wrong once we mapped the real process.
+
+For example, the team believed permitting always happened after design approval. In practice, for certain sign types, they submitted preliminary permit applications during the design phase to avoid delays. The system needed to support both flows.
+
+Building operational software for an existing business is fundamentally a translation problem: understanding the real process, identifying where software can reduce friction without imposing rigidity, and building something the team will actually use instead of working around.
+
+## Outcome
+
+The system replaced a patchwork of spreadsheets and email threads with a single source of truth for the company's project pipeline. Quoting time dropped significantly because material calculations became automated. New employees could onboard faster because the process was documented in the software itself, not just in senior employees' heads.

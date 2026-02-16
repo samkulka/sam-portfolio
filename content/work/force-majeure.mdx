@@ -1,0 +1,88 @@
+---
+title: "Force Majeure"
+description: "Full-stack ticketing platform for artists and events with purchase flows, event management, admin tooling, and payment processing."
+date: "2023-06"
+role: "Product Engineer & System Designer"
+stack:
+  - TypeScript
+  - Next.js
+  - Node.js
+  - PostgreSQL
+  - Stripe
+  - Redis
+  - Vercel
+links:
+  - label: "Live Site"
+    href: "https://forcemajeure.vip"
+order: 1
+---
+
+Force Majeure is a ticketing and event management platform built for independent artists, promoters, and mid-size venues. It handles the full lifecycle from event creation and ticket sales through check-in and post-event settlement.
+
+The platform was designed around one core constraint: reliability during high-demand on-sale moments, where hundreds or thousands of buyers hit the purchase flow simultaneously.
+
+## The problem
+
+Most ticketing platforms either cater to massive enterprises (Ticketmaster) or offer bare-bones solutions that break under real traffic. Independent artists and promoters need something in between: a system that handles spiky demand gracefully, integrates payment processing without surprises, and provides operational tooling for day-of logistics.
+
+Key requirements:
+
+- Purchase flows that remain consistent under concurrent load
+- Inventory management that prevents overselling
+- Fraud and chargeback mitigation without excessive friction
+- Admin tooling for event creation, guest lists, and reporting
+- Settlement workflows that reconcile ticket revenue, fees, and payouts
+
+## System design
+
+### Purchase flow and inventory
+
+The purchase flow is the most critical path in the system. When a buyer selects tickets and proceeds to checkout, we need to guarantee that the tickets are held (not available to other buyers) until the transaction completes or times out.
+
+We use a reservation-based model: selecting tickets creates a time-limited hold (10 minutes) backed by a Redis lock on the specific inventory rows. The hold is released either on successful payment confirmation or on expiration. PostgreSQL row-level locking ensures that two concurrent requests cannot reserve the same ticket.
+
+The checkout page communicates with Stripe via Payment Intents. We use webhooks as the source of truth for payment confirmation rather than relying on client-side redirects. This means a buyer whose browser crashes mid-payment still gets their tickets once Stripe confirms the charge.
+
+### Event management
+
+Event organizers get a dashboard for creating and managing events: setting ticket tiers and pricing, configuring venue capacity, managing promo codes, and defining access controls for door staff.
+
+Events support multiple ticket types (general admission, VIP, early bird) with independent inventory pools. Capacity is enforced at both the tier level and the venue level, so an event with 500 GA and 100 VIP tickets in a 600-person venue cannot accidentally oversell.
+
+### Fraud and chargebacks
+
+Ticketing platforms are frequent targets for card testing and fraudulent purchases. We implemented several layers:
+
+- **Stripe Radar** for automated fraud scoring on every transaction
+- **Rate limiting** on the purchase endpoint, keyed by IP and fingerprint
+- **Velocity checks** that flag accounts purchasing abnormal quantities
+- **Chargeback automation** that generates Stripe dispute evidence from our transaction logs, including IP data, delivery confirmation, and access logs
+
+Chargebacks are tracked per-event and per-buyer. Repeat offenders are flagged and can be blocked from future purchases.
+
+### Admin tooling and operations
+
+The admin interface serves both platform operators and event organizers:
+
+- **Event dashboard:** real-time sales tracking, revenue breakdowns by tier, and attendee lists
+- **Guest list management:** organizers can add comped tickets and manage will-call entries
+- **Check-in tools:** a mobile-friendly check-in view with QR scanning for door staff
+- **Settlement reports:** after an event, automated reconciliation of gross revenue, platform fees, payment processing fees, and net payout
+
+### Transactional integrity
+
+Every financial operation (ticket purchase, refund, payout) is wrapped in a database transaction with idempotency keys. Stripe webhook handlers are idempotent by design, so duplicate webhook deliveries do not create duplicate records.
+
+We use a ledger-style accounting model where every money movement creates a journal entry. This makes reconciliation straightforward and provides a complete audit trail. Monthly settlement reports are generated automatically and sent to organizers.
+
+## Constraints and tradeoffs
+
+**On-sale spikes.** The system needed to handle 10x normal traffic during popular on-sales. Rather than over-provisioning infrastructure permanently, we use Vercel's serverless functions for the purchase API (which scale automatically) and Redis for the reservation layer (which handles the concurrency-sensitive operations). PostgreSQL handles the durable state.
+
+**Refund complexity.** Refund policies vary by event. Some organizers allow full refunds up to 48 hours before the event, others allow no refunds at all. The refund engine supports per-event policy configuration and handles partial refunds (e.g., refunding a ticket but retaining the service fee).
+
+**Multi-currency.** Events can be priced in different currencies. Stripe handles the payment processing, but our settlement engine needs to track exchange rates at the time of purchase and compute payouts in the organizer's preferred currency.
+
+## Outcome
+
+Force Majeure handles the full ticketing lifecycle with the reliability that independent artists and venues require. The reservation-based purchase flow has processed thousands of concurrent checkouts without overselling, and the settlement system provides the financial transparency that organizers need to trust the platform with their revenue.

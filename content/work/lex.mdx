@@ -1,0 +1,85 @@
+---
+title: "Lex"
+description: "A legal data ontology platform for structured modeling of statutes and regulatory relationships, with RAG-based semantic querying."
+date: "2024-01"
+role: "Full Stack Engineer"
+stack:
+  - Python
+  - FastAPI
+  - PostgreSQL
+  - pgvector
+  - OpenAI
+  - React
+  - TypeScript
+  - Docker
+links:
+  - label: "Live Site"
+    href: "https://lex-virid.vercel.app/"
+order: 3
+---
+
+Legal professionals spend enormous amounts of time navigating dense regulatory texts, cross-referencing statutes, and tracing relationships between overlapping jurisdictional rules. Lex was built to make that process tractable through structured data modeling and AI-powered querying.
+
+The platform ingests raw legal text (statutes, regulations, case annotations), parses it into a structured ontology, and exposes a semantic search interface where users can ask natural language questions and receive grounded, citation-backed answers.
+
+## The problem
+
+Legal research tools have historically been keyword-based. A lawyer searching for "employer liability in wrongful termination" gets thousands of results ranked by term frequency, not by conceptual relevance. The relationships between statutes (amendments, exceptions, supersessions) are invisible in flat search results.
+
+We needed a system that could:
+
+- Model the hierarchical and relational structure of legal texts
+- Support semantic queries that understand legal concepts, not just keywords
+- Return answers grounded in specific statutory provisions with full traceability
+- Handle multi-jurisdictional content with overlapping terminology
+
+## Architecture
+
+The system has four major layers:
+
+**Ingestion pipeline.** Raw legal documents (PDFs, HTML scrapes, structured XML from government APIs) are normalized into a common intermediate format. A combination of rule-based parsers and LLM-assisted extraction identifies section boundaries, cross-references, definitions, and amendment chains.
+
+**Ontology layer.** The core data model in PostgreSQL represents legal concepts as a directed graph: statutes reference other statutes, definitions scope to specific sections, exceptions modify parent rules. This is not a generic knowledge graph. The schema was designed specifically for legal relationships (amendment-of, exception-to, defined-in, superseded-by) after extensive domain research.
+
+**Embedding and retrieval.** Each ontology node (section, subsection, definition) is embedded using OpenAI's embedding models and stored in pgvector. At query time, the user's question is embedded and matched against the vector index, then filtered through the ontology graph to ensure results are contextually relevant (not just semantically similar).
+
+**Query API and UI.** A FastAPI backend exposes endpoints for both structured ontology traversal and RAG-based natural language queries. The React frontend provides a search interface with inline citation rendering, section previews, and graph visualization for exploring statutory relationships.
+
+## Deep dives
+
+### Ontology schema decisions
+
+The initial temptation was to use a generic triple store or knowledge graph database. We evaluated Neo4j and Amazon Neptune, but the query patterns we needed (hierarchical traversal with attribute filtering) mapped more naturally to PostgreSQL with recursive CTEs and a well-designed relational schema.
+
+The core tables are: `statutes`, `sections`, `definitions`, `relationships`, and `annotations`. The `relationships` table uses a typed edge model with columns for `source_id`, `target_id`, `relationship_type`, and `metadata` (JSONB for jurisdiction-specific attributes). This gave us the flexibility of a graph model without the operational overhead of a separate graph database.
+
+### Retrieval strategy
+
+Naive vector similarity search performs poorly on legal text. A query about "termination notice requirements" might return semantically similar results about employment termination, lease termination, and contract termination. Without domain context, the retriever cannot distinguish between them.
+
+Our approach combines vector search with ontology-aware re-ranking:
+
+1. Initial retrieval pulls the top-k candidates from pgvector
+2. Each candidate is enriched with its ontology context (parent statute, applicable jurisdiction, section type)
+3. A re-ranking step uses the ontology graph to boost results that share jurisdictional and topical scope with the query context
+4. The final response is assembled with full citation chains
+
+This hybrid approach reduced irrelevant results by roughly 60% compared to pure vector search in our evaluation set.
+
+### Evaluation and guardrails
+
+Legal applications demand high precision. We built an evaluation pipeline with two components:
+
+**Retrieval evaluation.** A curated dataset of 200+ question/answer pairs with gold-standard source citations. We track recall@k and mean reciprocal rank, with alerts when metrics degrade after model or schema changes.
+
+**Generation guardrails.** The LLM is prompted to cite specific sections for every claim. Responses that contain assertions without traceable citations are flagged and suppressed. We also run a post-generation check that validates cited section IDs actually exist in the ontology and contain text relevant to the claim.
+
+### Latency and caching
+
+Legal queries tend to be session-based. A researcher investigating a topic will ask several related questions in sequence. We cache ontology subgraphs per session, so subsequent queries that traverse the same portion of the statute graph do not require repeated database lookups. Embedding computations are cached by content hash to avoid redundant API calls.
+
+End-to-end latency for a typical query (embedding, retrieval, re-ranking, generation) averages around 2.5 seconds. The bottleneck is the generation step. For the retrieval-only mode (no LLM synthesis), responses return in under 400ms.
+
+## Outcome
+
+Lex demonstrated that structured ontology modeling combined with retrieval-augmented generation can meaningfully improve the precision and usability of legal research tools. The system processes queries across multiple jurisdictions and returns grounded, citation-backed answers that legal professionals can verify and trust.
