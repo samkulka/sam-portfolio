@@ -13,7 +13,7 @@ const projects = [
     description:
       "Full-stack ticketing platform with concurrent purchase flows, payment processing, and event operations tooling.",
     href: "/work/force-majeure",
-    role: "Product Engineer & System Designer",
+    role: "Co-Founder / Product Engineer & System Designer",
     stack: ["TypeScript", "Next.js", "Node.js", "PostgreSQL", "Stripe", "Redis"],
   },
   {
@@ -21,7 +21,7 @@ const projects = [
     description:
       "Operational software translating manual signage workflows into a structured digital pipeline.",
     href: "/work/flite-signs",
-    role: "Product Engineer",
+    role: "Product Engineer (Contract)",
     stack: ["TypeScript", "React", "Node.js", "PostgreSQL", "Prisma"],
   },
   {
@@ -29,7 +29,7 @@ const projects = [
     description:
       "Legal data ontology platform with RAG-based semantic querying across statutes and regulatory relationships.",
     href: "/work/lex",
-    role: "Full Stack Engineer",
+    role: "Full Stack Engineer (Project)",
     stack: ["Python", "FastAPI", "PostgreSQL", "pgvector", "OpenAI", "React"],
   },
 ]
