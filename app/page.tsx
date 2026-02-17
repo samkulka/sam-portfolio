@@ -13,7 +13,7 @@ const projects = [
     description:
       "Full-stack ticketing platform with concurrent purchase flows, payment processing, and event operations tooling.",
     href: "/work/force-majeure",
-    role: "Co-Founder / Product Engineer & System Designer",
+    role: "Co-Founder / Product Manager & System Designer",
     stack: ["TypeScript", "Next.js", "Node.js", "PostgreSQL", "Stripe", "Redis"],
   },
   {
