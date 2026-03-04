@@ -1,0 +1,83 @@
+---
+title: "Funnel Forge"
+description: "A portfolio-constrained territory intelligence engine for capital lab equipment sales — qualifying prospects by mapping organizations to manufacturer portfolios."
+date: "2025"
+role: "Full Stack Engineer"
+stack:
+  - TypeScript
+  - Next.js
+  - FastAPI
+  - PostgreSQL
+  - PostGIS
+  - Celery
+  - Redis
+  - Docker
+links:
+  - label: "Live Site"
+    href: "https://funnel-forge-gilt.vercel.app/"
+order: 3
+---
+
+Capital laboratory equipment sales run on territory coverage. A rep owns a set of ZIP codes and is responsible for every qualified account inside them. The problem is finding those accounts. Most reps rely on word-of-mouth, trade show leads, and driving past buildings. Funnel Forge replaces that blind prospecting with a systematic discovery and qualification pipeline built specifically for DAI Scientific.
+
+The system takes a rep's territory (a set of ZIP codes), discovers every organization within those boundaries, qualifies each one against DAI's actual manufacturer portfolio, and outputs structured prospect lists ready for outreach. If DAI doesn't represent a manufacturer that serves a given facility's environment, the account is excluded. No noise, no unqualified leads.
+
+## The problem
+
+DAI Scientific represents industry-leading manufacturers across academic, life science, biotech, pharmaceutical, and clinical industries. Their reps sell capital equipment — autoclaves, biological safety cabinets, centrifuges, cold storage, cleanroom systems — into facilities that require specific physical infrastructure.
+
+The challenge is that there is no single source of truth for "labs and clinical facilities in ZIP code 27514 that need equipment DAI can actually sell." CMS and CLIA databases contain clinical and diagnostic labs. University directories list research facilities. But none of these sources tell you whether a given organization maps to DAI's manufacturer portfolio. Reps were left assembling prospect lists manually, missing accounts entirely, or wasting time on organizations DAI cannot serve.
+
+We needed a system that could:
+
+- Discover organizations within arbitrary ZIP-code territories
+- Classify each organization by physical infrastructure (sterile processing, containment, pathology, cold storage, cleanrooms)
+- Map infrastructure types to specific manufacturers in DAI's portfolio
+- Exclude anything without a legitimate manufacturer alignment
+- Output actionable, exportable prospect lists with contact information
+
+## Architecture
+
+The system is a monorepo with a Next.js frontend, FastAPI backend, and PostgreSQL database extended with PostGIS for spatial queries and pgvector for future semantic capabilities.
+
+**Data ingestion.** Discovery starts with CMS Provider of Services and CLIA datasets. The ingestion pipeline parses these sources, filters by territory ZIP codes, extracts facility signals, and creates or updates organization records. Ingestion runs as async Celery jobs backed by Redis, triggered per territory via the API.
+
+**Rules engine.** The core of the system is a seven-step qualification pipeline:
+
+1. Aggregate signals from data sources (CLIA types, CMS provider classifications, facility metadata)
+2. Infer infrastructure types from those signals (BSL facility, GMP cleanroom, histology lab, SPD)
+3. Map infrastructure types to equipment categories (autoclaves, biosafety cabinets, cryogenic storage)
+4. Evaluate manufacturer mapping rules against DAI's portfolio
+5. Apply qualification gates — reject anything without manufacturer alignment
+6. Score each account from 0 to 100 based on signal strength and mapping confidence
+7. Persist results with a full audit trail (every rule fire, every evidence source, every score component)
+
+The engine prefers false negatives over false positives. An account that might qualify is excluded until stronger evidence surfaces.
+
+**Database.** Sixteen models capture the domain: Organization, Territory, Manufacturer, EquipmentCategory, and InfrastructureType at the core, with junction tables for organization-to-infrastructure, organization-to-equipment, and organization-to-manufacturer relationships — all carrying confidence scores. Audit tables (Evidence, QualificationRuleFire, ManualOverride, AuditLog) ensure every qualification decision is traceable.
+
+**Frontend.** The Next.js application provides territory management, account browsing with filtering and export, an admin interface for managing manufacturer rules and equipment mappings, and a review queue where managers can inspect and override qualification decisions. Auth uses NextAuth v5 with JWT-based RBAC across admin, manager, and rep roles.
+
+## Deep dives
+
+### Portfolio-constrained qualification
+
+The key architectural decision was making manufacturer alignment the hard gate, not a scoring factor. Early designs scored accounts on a spectrum and let reps decide what to pursue. This created the same problem the tool was supposed to solve — reps still had to evaluate whether they could actually sell into each account.
+
+By making the manufacturer check a binary gate, the output is a clean list where every account is actionable. The rules engine handles the complexity; the rep just sees qualified prospects.
+
+### Infrastructure-based ICP
+
+Traditional lead qualification uses firmographic filters: revenue, employee count, industry codes. None of these reliably indicate whether a facility has the physical infrastructure that needs capital lab equipment. A $2M revenue biotech startup might have a BSL-3 lab. A $500M hospital system might outsource all its lab work.
+
+Funnel Forge qualifies on infrastructure instead. The system classifies facilities by what they physically contain — sterile processing departments, containment labs, pathology suites, cleanrooms, vivariums — and maps those to equipment categories. This is what determines whether DAI can sell there, not the organization's size or revenue.
+
+### Territory as a first-class entity
+
+Territories are not just filters — they are persistent objects with their own discovery history, account relationships, and audit trails. When a rep's territory changes (ZIP codes added or removed), the system incrementally updates: new ZIPs trigger discovery jobs, removed ZIPs flag accounts for reassignment rather than deletion.
+
+This makes territory transitions clean. Account history and qualification data survive reassignment, so the incoming rep inherits context instead of starting from scratch.
+
+## Outcome
+
+Funnel Forge gives DAI Scientific reps a continuously updated, portfolio-qualified view of every account in their territory. Instead of spending hours assembling prospect lists from scattered sources, reps get structured output they can immediately act on — with manufacturer mappings, infrastructure classifications, and contact information ready for outreach.

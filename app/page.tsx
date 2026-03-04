@@ -25,6 +25,14 @@ const projects = [
     stack: ["TypeScript", "React", "Node.js", "PostgreSQL", "Prisma"],
   },
   {
+    title: "Funnel Forge",
+    description:
+      "Portfolio-constrained territory intelligence engine for capital lab equipment sales, qualifying prospects by mapping organizations to manufacturer portfolios.",
+    href: "/work/funnel-forge",
+    role: "Full Stack Engineer",
+    stack: ["TypeScript", "Next.js", "FastAPI", "PostgreSQL", "PostGIS", "Redis"],
+  },
+  {
     title: "Lex",
     description:
       "Legal data ontology platform with RAG-based semantic querying across statutes and regulatory relationships.",
