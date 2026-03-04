@@ -29,7 +29,7 @@ const projects = [
     description:
       "Portfolio-constrained territory intelligence engine for capital lab equipment sales, qualifying prospects by mapping organizations to manufacturer portfolios.",
     href: "/work/funnel-forge",
-    role: "Full Stack Engineer",
+    role: "Co-Founder & Product Engineer",
     stack: ["TypeScript", "Next.js", "FastAPI", "PostgreSQL", "PostGIS", "Redis"],
   },
   {
