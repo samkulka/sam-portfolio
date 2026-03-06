@@ -17,20 +17,20 @@ const projects = [
     stack: ["TypeScript", "Next.js", "Node.js", "PostgreSQL", "Stripe", "Redis"],
   },
   {
-    title: "Flite Signs",
-    description:
-      "Operational software translating manual signage workflows into a structured digital pipeline.",
-    href: "/work/flite-signs",
-    role: "Product Engineer (Contract)",
-    stack: ["TypeScript", "React", "Node.js", "PostgreSQL", "Prisma"],
-  },
-  {
     title: "Funnel Forge",
     description:
       "Portfolio-constrained territory intelligence engine for capital lab equipment sales, qualifying prospects by mapping organizations to manufacturer portfolios.",
     href: "/work/funnel-forge",
     role: "Co-Founder & Product Engineer",
     stack: ["TypeScript", "Next.js", "FastAPI", "PostgreSQL", "PostGIS", "Redis"],
+  },
+  {
+    title: "Flite Signs",
+    description:
+      "Operational software translating manual signage workflows into a structured digital pipeline.",
+    href: "/work/flite-signs",
+    role: "Product Engineer (Contract)",
+    stack: ["TypeScript", "React", "Node.js", "PostgreSQL", "Prisma"],
   },
   {
     title: "Lex",
