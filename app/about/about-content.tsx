@@ -29,10 +29,17 @@ export function AboutContent() {
           <FadeIn delay={0.1}>
             <div className="mt-6 space-y-5 text-[0.9375rem] leading-relaxed text-muted dark:text-dark-muted">
               <p>
-                I'm Sam Kulka, an AI-focused data engineer and full stack builder
-                based in Austin, TX. I build intelligent data systems, AI-powered
-                platforms, and real-world operational tools from architecture to
-                interface.
+                Hi, I'm Sam Kulka. I'm a Technical Product Manager based in
+                Austin, focused on building data and AI products that solve
+                complex operational problems.
+              </p>
+              <p>
+                My background combines product strategy with hands-on experience
+                in data systems and software development. I enjoy working on
+                technical products where understanding the underlying systems is
+                critical to making good product decisions. That foundation allows
+                me to collaborate closely with engineers while translating
+                customer needs and business goals into clear product direction.
               </p>
             </div>
           </FadeIn>
@@ -41,30 +48,67 @@ export function AboutContent() {
 
       <FadeIn delay={0.15}>
         <div className="mt-8 space-y-5 text-[0.9375rem] leading-relaxed text-muted dark:text-dark-muted">
+          <h3 className="text-sm font-semibold text-foreground dark:text-dark-foreground">
+            Force Majeure
+          </h3>
           <p>
-            As Co-Founder, Managing Member, and Lead Engineer at Force Majeure, I led the design and development of a full-stack ticketing and event platform focused on artist-first workflows and operational flexibility. My role combined product strategy, system architecture, and hands-on engineering, translating real-world event logistics into scalable software systems.
-            I architected core platform features including event lifecycle management, transactional ticket purchasing flows, and administrative tooling for non-technical organizers. The platform was built with an emphasis on reliability, usability, and extensibility, supporting real operational constraints such as high-traffic ticket drops, payment state management, and evolving product requirements.
-            Beyond engineering execution, I guided product direction, user experience decisions, and technical tradeoffs to ensure alignment between business goals and platform capabilities.
+            I'm currently Co-Founder and Product Manager at Force Majeure, a
+            ticketing platform built for independent promoters and venues.
           </p>
           <p>
-            Most recently, I was a Data Engineer at Charles Schwab, where I led
-            the design and delivery of production data products for regulatory
-            and business stakeholders, engineered data architectures supporting
-            200+ analysts, and drove a data warehouse migration that saved $180M.
+            I define and own the product roadmap for a multi-sided marketplace
+            serving promoters, artists, and customers. Core workflows include
+            event creation, ticket inventory management, checkout flows, and
+            financial settlement systems.
           </p>
           <p>
-            Outside of enterprise work, I build full-stack products end to end. Lex
-            is an AI knowledge platform that converts unstructured documents into
-            structured ontologies and queryable knowledge graphs using RAG and vector
-            search. Force Majeure is a ticketing system designed for high-concurrency
-            on-sale events. Flite Signs is operational software that replaced
-            spreadsheet-driven workflows at an architectural signage company.
+            I regularly work with promoters and venue operators to understand
+            their operational needs and translate those insights into product
+            decisions. From those conversations I prioritize features, define
+            workflows, and partner with engineering to build reliable systems
+            that support high-traffic ticket on-sale events.
+          </p>
+
+          <h3 className="text-sm font-semibold text-foreground dark:text-dark-foreground">
+            Funnel Forge
+          </h3>
+          <p>
+            I also worked as a Product & Data Contractor for Funnel Forge, where
+            I helped design and build a territory intelligence engine for medical
+            device sales teams.
           </p>
           <p>
-            I studied Computer Science at Austin Community College and Finance at
-            Texas State University. The combination of a technical and business
-            background shapes how I approach problems: I care about building systems
-            that solve real business needs, not just technically interesting artifacts.
+            The system matches healthcare organizations with compatible
+            manufacturers by combining regulatory data sources, manufacturer
+            catalogs, and enrichment layers. I built a multi-stage pipeline that
+            generates qualified sales targets across more than 700 ZIP code
+            territories, turning fragmented public datasets into a structured
+            product for sales teams.
+          </p>
+          <p>
+            This project required translating messy real-world data into usable
+            insights and designing workflows that help sales teams identify and
+            prioritize the right opportunities.
+          </p>
+
+          <h3 className="text-sm font-semibold text-foreground dark:text-dark-foreground">
+            Charles Schwab
+          </h3>
+          <p>
+            Before that I worked as a Data Engineer at Charles Schwab, where I
+            built production data products used by analysts and regulatory teams.
+          </p>
+          <p>
+            One of the largest initiatives I worked on involved leading a data
+            warehouse migration that ultimately saved the firm $180M. I also
+            helped turn a vague regulatory requirement into a production data
+            product used by non-technical teams to make high-stakes business
+            decisions.
+          </p>
+          <p>
+            Working in that environment reinforced how important it is for
+            product managers to deeply understand both the data and the users who
+            rely on it.
           </p>
         </div>
       </FadeIn>
@@ -73,55 +117,67 @@ export function AboutContent() {
 
       <Section className="py-0">
         <h2 className="text-sm font-medium tracking-wide text-muted uppercase dark:text-dark-muted">
-          What I work with
+          How I Work
+        </h2>
+        <div className="mt-6 space-y-5 text-[0.9375rem] leading-relaxed text-muted dark:text-dark-muted">
+          <p>
+            Across my work I focus on products that sit at the intersection of
+            data, AI, and operational workflows.
+          </p>
+          <p>I like working on problems where:</p>
+          <ul className="list-none space-y-2">
+            <li className="flex gap-2">
+              <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-muted dark:bg-dark-muted" />
+              the domain is complex
+            </li>
+            <li className="flex gap-2">
+              <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-muted dark:bg-dark-muted" />
+              the data is messy
+            </li>
+            <li className="flex gap-2">
+              <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-muted dark:bg-dark-muted" />
+              the product must simplify difficult decisions for users
+            </li>
+          </ul>
+          <p>
+            My approach is to start with the real workflow, understand the
+            decisions users need to make, and design systems that make those
+            decisions easier and more reliable.
+          </p>
+        </div>
+      </Section>
+
+      <Divider className="my-12" />
+
+      <Section className="py-0">
+        <h2 className="text-sm font-medium tracking-wide text-muted uppercase dark:text-dark-muted">
+          Core Areas
         </h2>
         <div className="mt-6 grid gap-8 sm:grid-cols-2">
           <div>
             <h3 className="text-sm font-semibold text-foreground dark:text-dark-foreground">
-              Languages
+              Product
             </h3>
             <p className="mt-2 text-sm text-muted dark:text-dark-muted">
-              SQL, Python, TypeScript, R, Java, C++
+              Product Strategy, Roadmapping, User Discovery, Workflow Design,
+              Stakeholder Alignment, Agile / Scrum
             </p>
           </div>
           <div>
             <h3 className="text-sm font-semibold text-foreground dark:text-dark-foreground">
-              Data Engineering
+              AI & Data
             </h3>
             <p className="mt-2 text-sm text-muted dark:text-dark-muted">
-              Informatica, Databricks, dbt, BigQuery, DuckDB, PostgreSQL, ETL Automation
+              RAG Architectures, Semantic Search, Data Modeling, Data
+              Warehousing, BigQuery
             </p>
           </div>
           <div>
             <h3 className="text-sm font-semibold text-foreground dark:text-dark-foreground">
-              Cloud & Infrastructure
+              Technical
             </h3>
             <p className="mt-2 text-sm text-muted dark:text-dark-muted">
-              GCP, AWS, Kubernetes, Docker, IaC, Vercel
-            </p>
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold text-foreground dark:text-dark-foreground">
-              AI & ML
-            </h3>
-            <p className="mt-2 text-sm text-muted dark:text-dark-muted">
-              Agentic Engineering, RAG Pipelines, OpenAI, Vector Search, Embeddings
-            </p>
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold text-foreground dark:text-dark-foreground">
-              Full Stack
-            </h3>
-            <p className="mt-2 text-sm text-muted dark:text-dark-muted">
-              React, Next.js, Node.js, FastAPI, Prisma, Tailwind CSS
-            </p>
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold text-foreground dark:text-dark-foreground">
-              Process
-            </h3>
-            <p className="mt-2 text-sm text-muted dark:text-dark-muted">
-              Agile/Scrum, System Design, Domain Modeling, Data Warehousing
+              SQL, Python, APIs, Distributed Systems, AWS, GCP, Kubernetes
             </p>
           </div>
         </div>
@@ -142,33 +198,7 @@ export function AboutContent() {
             <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-muted dark:bg-dark-muted" />
             Professional Scrum Developer I (PSD I)
           </li>
-          <li className="flex gap-2">
-            <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-muted dark:bg-dark-muted" />
-            Dagster Essentials
-          </li>
         </ul>
-      </Section>
-
-      <Divider className="my-12" />
-
-      <Section className="py-0">
-        <h2 className="text-sm font-medium tracking-wide text-muted uppercase dark:text-dark-muted">
-          Approach
-        </h2>
-        <div className="mt-6 space-y-5 text-[0.9375rem] leading-relaxed text-muted dark:text-dark-muted">
-          <p>
-            I start with the problem, not the technology. The best technical
-            decisions come from deeply understanding the domain: sitting with
-            users, mapping real workflows, and identifying where software can
-            reduce friction without imposing unnecessary rigidity.
-          </p>
-          <p>
-            I prefer small, focused systems over sprawling abstractions. Code
-            should be as simple as the problem allows. I bias toward shipping
-            early, iterating on real feedback, and keeping infrastructure costs
-            proportional to actual usage.
-          </p>
-        </div>
       </Section>
     </>
   )

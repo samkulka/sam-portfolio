@@ -8,15 +8,15 @@ import "./globals.css"
 export const metadata: Metadata = {
   metadataBase: new URL("https://samkulka.com"),
   title: {
-    default: "Sam Kulka - AI-Data Engineer & Full Stack Builder",
+    default: "Sam Kulka - Technical Product Manager & Engineer",
     template: "%s | Sam Kulka",
   },
   description:
-    "AI-focused data engineer and full stack builder. Intelligent data systems, AI-powered platforms, and production software, end to end.",
+    "Technical Product Manager based in Austin, focused on building data and AI products that solve complex operational problems.",
   openGraph: {
-    title: "Sam Kulka - AI-Data Engineer & Full Stack Builder",
+    title: "Sam Kulka - Technical Product Manager & Engineer",
     description:
-      "AI-focused data engineer and full stack builder. Intelligent data systems, AI-powered platforms, and production software, end to end.",
+      "Technical Product Manager based in Austin, focused on building data and AI products that solve complex operational problems.",
     url: "https://samkulka.com",
     siteName: "Sam Kulka",
     locale: "en_US",
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sam Kulka - AI-Data Engineer & Full Stack Builder",
+    title: "Sam Kulka - Technical Product Manager & Engineer",
     description:
-      "AI-focused data engineer and full stack builder. Intelligent data systems, AI-powered platforms, and production software, end to end.",
+      "Technical Product Manager based in Austin, focused on building data and AI products that solve complex operational problems.",
   },
   robots: {
     index: true,

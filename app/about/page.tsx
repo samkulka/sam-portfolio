@@ -5,7 +5,7 @@ import { AboutContent } from "./about-content"
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Full stack product engineer who builds data-driven platforms, AI-powered tools, and operational systems.",
+    "Technical Product Manager based in Austin, focused on building data and AI products that solve complex operational problems.",
 }
 
 export default function AboutPage() {

@@ -5,78 +5,59 @@ import { Section } from "@/components/section"
 import { Button } from "@/components/button"
 import { Divider } from "@/components/divider"
 
+const summary =
+  "I build data and AI products from scratch, with enough of an engineering background to work closely with technical teams without slowing them down. Most recently at Charles Schwab I shipped a production data platform and led a migration that saved the company $180M. Outside of that I've built a territory intelligence tool for medical device sales and co-founded a ticketing platform. I'm looking for a PM role where the product is technical and the work starts early."
+
 const experience = [
+  {
+    title: "Product Manager & Co-Founder",
+    company: "Force Majeure",
+    subtitle: "Ticketing platform for independent promoters and venues.",
+    period: "Sep 2023 - Present",
+    points: [
+      "Define and own the product roadmap for a multi-sided marketplace serving promoters, artists, and customers. Core workflows include event creation, inventory management, and financial settlement.",
+      "Run regular feedback sessions with promoters and venue operators and use what I learn to drive backlog prioritization and product decisions.",
+      "Partner directly with engineering on software checkout flows, ticket inventory systems, and the event CMS.",
+    ],
+  },
   {
     title: "Data Engineer",
     company: "Charles Schwab",
     period: "Jan 2024 - May 2025",
     points: [
-      "Led end-to-end design and delivery of a production data product, translating ambiguous regulatory and business requirements into a scalable system used by non-technical stakeholders for high-stakes decisions",
-      "Led an acquisition and data warehouse migration initiative that saved Charles Schwab $180M upon completion",
-      "Engineered resilient data architectures supporting real-time analytics and predictive insights used by 200+ analysts across finance and operations",
-      "Implemented end-to-end data quality frameworks and validation logic, elevating accuracy and regulatory compliance across finance datasets while validating 5M records monthly",
+      "Led an acquisition and data warehouse migration initiative that saved Charles Schwab $180M upon completion of the project.",
+      "Took a vague regulatory requirement and turned it into a production data product used by non-technical teams to make high-stakes decisions. Acted as product owner and collaborated closely with developers and functional stakeholders throughout.",
     ],
   },
   {
-    title: "Data Engineer Intern",
+    title: "Product & Data Contractor",
+    company: "Funnel Forge",
+    subtitle: "Territory intelligence for medical device sales teams.",
+    period: "2025",
+    points: [
+      "Contracted to define and build a territory intelligence engine that matches healthcare organizations to compatible manufacturers using regulatory data and product capability signals.",
+      "Delivered a multi-stage pipeline pulling from CLIA registries, manufacturer catalogs, and enrichment layers to generate sales targets across 700+ ZIP code territories.",
+    ],
+  },
+  {
+    title: "Data Engineer & BSA (Intern)",
     company: "Charles Schwab",
     period: "Jun 2022 - Aug 2023",
     points: [
-      "Developed and tuned ETL pipelines using Informatica PowerCenter/IICS to streamline cross-source data integration",
-      "Enhanced ETL efficiency with SQL and Python scripts, cutting average query time by 40%",
-      "Automated 15+ workflows across 3 business units using data orchestration tools and GCP",
-      "Collaborated on sprint planning and backlog grooming to refine technical requirements and maintain agile velocity",
-    ],
-  },
-]
-
-const projects = [
-  {
-    title: "Force Majeure",
-    description: "Full-Stack Ticketing Platform",
-    period: "2025",
-    points: [
-      "Led end-to-end product architecture translating real-world event logistics into software systems",
-      "Designed conversion-focused ticket purchasing flows balancing usability and transactional reliability",
-      "Built admin tooling allowing non-technical organizers to manage events, ticket tiers, and operational workflows",
-      "Implemented backend APIs and database models for event lifecycle management and purchase logic",
-      "Structured transactional pipeline accounting for payment states, concurrency, and data integrity",
-      "Designed system with awareness of high-traffic event drops and future extensibility",
-      "Acted as product owner and engineer, aligning business strategy with technical execution",
-    ],
-  },
-  {
-    title: "Lex",
-    description: "AI Knowledge & Workflow Platform",
-    period: "2025",
-    points: [
-      "Built a full-stack AI platform converting unstructured documents and APIs into structured data ontologies and queryable knowledge graphs using RAG, vector embeddings, and semantic indexing",
-      "Engineered a RAG pipeline combining OpenAI embeddings, a vector database, and PostgreSQL for high-precision semantic search and multi-document reasoning",
-      "Implemented ontology-driven data models normalizing heterogeneous inputs into a unified, machine-readable schema",
-      "Developed a Next.js + FastAPI production system with authentication, job history, and audit trails for traceable, enterprise-grade AI workflows",
-    ],
-  },
-  {
-    title: "Flite Signs",
-    description: "Operational Software for Signage Manufacturing",
-    period: "2024",
-    points: [
-      "Built full-stack operational software replacing spreadsheets and email threads with a structured project pipeline for an architectural signage company",
-      "Designed a quoting engine with configurable material and labor rates, line-item breakdowns, and version-tracked client approvals",
-      "Implemented a multi-stage order pipeline with role-based access controls, stage transition tracking, and real-time team dashboards",
-      "Used FFmpeg to build a video compression pipeline for the landing page hero — transcoding to H.264, tuning CRF for quality-to-size balance, and generating multi-resolution variants",
+      "Led an acquisition and data warehouse migration initiative that saved Charles Schwab $180M upon completion of the project.",
+      "Took a vague regulatory requirement and turned it into a production data product used by non-technical teams to make high-stakes decisions. Acted as product owner across eng and business stakeholders throughout.",
     ],
   },
 ]
 
 const education = [
   {
-    degree: "Bachelor of Business Administration, Finance",
+    degree: "B.B.A. Finance",
     institution: "Texas State University",
     period: "Fall 2023",
   },
   {
-    degree: "Associate of Science, Computer Science",
+    degree: "A.S. Computer Science",
     institution: "Austin Community College",
     period: "Summer 2021",
   },
@@ -84,17 +65,16 @@ const education = [
 
 const certifications = [
   "Google Cloud Platform Associate Engineer",
-  "Professional Scrum Developer I (PSD I)",
-  "Dagster Essentials",
+  "Professional Scrum Developer\u2122 I (PSD I)",
 ]
 
 const skills = {
-  "Languages": "SQL, Python, R, Java, C++, TypeScript",
-  "Cloud & Infrastructure": "GCP, AWS, Kubernetes, Docker, IaC, Vercel",
-  "Data Engineering": "Informatica, Databricks, dbt, BigQuery, DuckDB, PostgreSQL, ETL Automation",
-  "AI & ML": "Agentic Engineering, RAG Pipelines, OpenAI, Vector Search, Embeddings",
-  "Data": "Data Modeling, Data Warehousing, Data Orchestration, BI Tools, Tableau",
-  "Process": "Agile/Scrum, System Design, Domain Modeling, API Design",
+  "Product":
+    "Product Strategy \u00b7 Roadmapping \u00b7 MVP Definition \u00b7 Agile/Scrum \u00b7 UX & Workflow Design \u00b7 Stakeholder Alignment",
+  "AI & Data":
+    "AI/ML Systems \u00b7 RAG Architectures \u00b7 Semantic Search \u00b7 Data Modeling \u00b7 Data Warehousing \u00b7 BigQuery",
+  "Technical":
+    "SQL \u00b7 Python \u00b7 AWS \u00b7 GCP \u00b7 APIs \u00b7 Distributed Systems \u00b7 Kubernetes",
 }
 
 export function ResumeContent({ pdfAvailable }: { pdfAvailable: boolean }) {
@@ -107,11 +87,11 @@ export function ResumeContent({ pdfAvailable }: { pdfAvailable: boolean }) {
               Resume
             </h1>
             <p className="mt-2 text-muted dark:text-dark-muted">
-              Sam Kulka, AI-Data Engineer
+              Sam Kulka, Technical Product Manager
             </p>
           </div>
           {pdfAvailable && (
-            <Button href="/SamKulka_FullStackEngineer_Res.pdf" variant="secondary" size="sm" external>
+            <Button href="/SamKulka_ProductManager_Res.pdf" variant="secondary" size="sm" external>
               Download PDF
             </Button>
           )}
@@ -122,66 +102,11 @@ export function ResumeContent({ pdfAvailable }: { pdfAvailable: boolean }) {
 
       <Section className="py-0">
         <h2 className="text-sm font-medium tracking-wide text-muted uppercase dark:text-dark-muted">
-          Experience
+          Summary
         </h2>
-        <div className="mt-6 space-y-10">
-          {experience.map((role) => (
-            <div key={role.title + role.company}>
-              <div className="flex flex-col justify-between gap-1 sm:flex-row sm:items-center">
-                <h3 className="font-semibold text-foreground dark:text-dark-foreground">
-                  {role.title}
-                </h3>
-                <span className="text-sm text-muted dark:text-dark-muted">
-                  {role.period}
-                </span>
-              </div>
-              <p className="mt-1 text-sm text-muted dark:text-dark-muted">
-                {role.company}
-              </p>
-              <ul className="mt-3 space-y-1.5 text-sm text-muted dark:text-dark-muted">
-                {role.points.map((point) => (
-                  <li key={point} className="flex gap-2">
-                    <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-muted dark:bg-dark-muted" />
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      <Divider className="my-10" />
-
-      <Section className="py-0">
-        <h2 className="text-sm font-medium tracking-wide text-muted uppercase dark:text-dark-muted">
-          Projects
-        </h2>
-        <div className="mt-6 space-y-10">
-          {projects.map((project) => (
-            <div key={project.title}>
-              <div className="flex flex-col justify-between gap-1 sm:flex-row sm:items-center">
-                <h3 className="font-semibold text-foreground dark:text-dark-foreground">
-                  {project.title}
-                </h3>
-                <span className="text-sm text-muted dark:text-dark-muted">
-                  {project.period}
-                </span>
-              </div>
-              <p className="mt-1 text-sm text-muted dark:text-dark-muted">
-                {project.description}
-              </p>
-              <ul className="mt-3 space-y-1.5 text-sm text-muted dark:text-dark-muted">
-                {project.points.map((point) => (
-                  <li key={point} className="flex gap-2">
-                    <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-muted dark:bg-dark-muted" />
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+        <p className="mt-6 text-sm leading-relaxed text-muted dark:text-dark-muted">
+          {summary}
+        </p>
       </Section>
 
       <Divider className="my-10" />
@@ -213,23 +138,42 @@ export function ResumeContent({ pdfAvailable }: { pdfAvailable: boolean }) {
 
       <Section className="py-0">
         <h2 className="text-sm font-medium tracking-wide text-muted uppercase dark:text-dark-muted">
-          Certifications
+          Experience
         </h2>
-        <ul className="mt-6 space-y-2 text-sm text-muted dark:text-dark-muted">
-          {certifications.map((cert) => (
-            <li key={cert} className="flex gap-2">
-              <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-muted dark:bg-dark-muted" />
-              {cert}
-            </li>
+        <div className="mt-6 space-y-10">
+          {experience.map((role) => (
+            <div key={role.title + role.company}>
+              <div className="flex flex-col justify-between gap-1 sm:flex-row sm:items-center">
+                <h3 className="font-semibold text-foreground dark:text-dark-foreground">
+                  {role.title} | {role.company}
+                </h3>
+                <span className="text-sm text-muted dark:text-dark-muted">
+                  {role.period}
+                </span>
+              </div>
+              {role.subtitle && (
+                <p className="mt-1 text-sm italic text-muted dark:text-dark-muted">
+                  {role.subtitle}
+                </p>
+              )}
+              <ul className="mt-3 space-y-1.5 text-sm text-muted dark:text-dark-muted">
+                {role.points.map((point) => (
+                  <li key={point} className="flex gap-2">
+                    <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-muted dark:bg-dark-muted" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       </Section>
 
       <Divider className="my-10" />
 
       <Section className="py-0">
         <h2 className="text-sm font-medium tracking-wide text-muted uppercase dark:text-dark-muted">
-          Skills
+          Technical Skills
         </h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {Object.entries(skills).map(([category, items]) => (
@@ -243,6 +187,22 @@ export function ResumeContent({ pdfAvailable }: { pdfAvailable: boolean }) {
             </div>
           ))}
         </div>
+      </Section>
+
+      <Divider className="my-10" />
+
+      <Section className="py-0">
+        <h2 className="text-sm font-medium tracking-wide text-muted uppercase dark:text-dark-muted">
+          Certifications
+        </h2>
+        <ul className="mt-6 space-y-2 text-sm text-muted dark:text-dark-muted">
+          {certifications.map((cert) => (
+            <li key={cert} className="flex gap-2">
+              <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-muted dark:bg-dark-muted" />
+              {cert}
+            </li>
+          ))}
+        </ul>
       </Section>
     </>
   )
