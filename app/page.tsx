@@ -21,7 +21,7 @@ const projects = [
     description:
       "Portfolio-constrained territory intelligence engine for capital lab equipment sales, qualifying prospects by mapping organizations to manufacturer portfolios.",
     href: "/work/funnel-forge",
-    role: "Co-Founder & Product Engineer",
+    role: "Product & Data Contractor",
     stack: ["TypeScript", "Next.js", "FastAPI", "PostgreSQL", "PostGIS", "Redis"],
   },
   {
@@ -49,7 +49,7 @@ export default function Home() {
         <Container>
           <FadeIn>
             <p className="mb-4 text-sm font-medium tracking-wide text-muted uppercase dark:text-dark-muted">
-              AI-Data Engineer &amp; Full Stack Builder
+              Technical Product Manager &amp; Engineer
             </p>
           </FadeIn>
           <FadeIn delay={0.1}>
@@ -59,8 +59,8 @@ export default function Home() {
           </FadeIn>
           <FadeIn delay={0.2}>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted dark:text-dark-muted">
-              Intelligent data systems, AI-powered platforms, and production
-              software. From pipeline to interface, end to end.
+              Data and AI products that solve complex operational problems.
+              From strategy to system, end to end.
             </p>
           </FadeIn>
           <FadeIn delay={0.3}>
